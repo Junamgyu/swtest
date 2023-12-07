@@ -151,7 +151,109 @@ namespace Tetris_test
             }
         }
 
+        private int[,] GetBlockArray(int block, int direction)
+        {
+            switch (block)
+            {
+                case 0:
+                    // ##
+                    // ##
+                    switch (direction)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            return new int[2, 2] { { 1, 1 }, { 1, 1 } };
+                    }
+                    break;
+                case 1:
+                    // ####
+                    switch (direction)
+                    {
+                        case 0:
+                        case 2:
+                            return new int[4, 4] { { 0, 0, 0, 0 }, { 1, 1, 1, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
+                        case 1:
+                        case 3:
+                            return new int[4, 4] { { 0, 0, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 1, 0 }, { 0, 0, 1, 0 } };
+                    }
+                    break;
+                case 2:
+                    //  ##
+                    // ##
+                    switch (direction)
+                    {
+                        case 0:
+                        case 2:
+                            return new int[3, 3] { { 0, 0, 0 }, { 0, 1, 1 }, { 1, 1, 0 } };
+                        case 1:
+                        case 3:
+                            return new int[3, 3] { { 0, 1, 0 }, { 0, 1, 1 }, { 0, 0, 1 } };
+                    }
+                    break;
+                case 3:
+                    // ##
+                    //  ##
+                    switch (direction)
+                    {
+                        case 0:
+                        case 2:
+                            return new int[3, 3] { { 0, 0, 0 }, { 1, 1, 0 }, { 0, 1, 1 } };
+                        case 1:
+                        case 3:
+                            return new int[3, 3] { { 0, 0, 1 }, { 0, 1, 1 }, { 0, 1, 0 } };
+                    }
+                    break;
+                case 4:
+                    // ###
+                    // #
+                    switch (direction)
+                    {
+                        case 0:
+                            return new int[3, 3] { { 0, 0, 0 }, { 1, 1, 1 }, { 1, 0, 0 } };
+                        case 1:
+                            return new int[3, 3] { { 0, 1, 0 }, { 0, 1, 0 }, { 0, 1, 1 } };
+                        case 2:
+                            return new int[3, 3] { { 0, 0, 1 }, { 1, 1, 1 }, { 0, 0, 0 } };
+                        case 3:
+                            return new int[3, 3] { { 1, 1, 0 }, { 0, 1, 0 }, { 0, 1, 0 } };
+                    }
+                    break;
+                case 5:
+                    // ###
+                    //   #
+                    switch (direction)
+                    {
+                        case 0:
+                            return new int[3, 3] { { 0, 0, 0 }, { 1, 1, 1 }, { 0, 0, 1 } };
+                        case 1:
+                            return new int[3, 3] { { 0, 1, 1 }, { 0, 1, 0 }, { 0, 1, 0 } };
+                        case 2:
+                            return new int[3, 3] { { 1, 0, 0 }, { 1, 1, 1 }, { 0, 0, 0 } };
+                        case 3:
+                            return new int[3, 3] { { 0, 0, 1 }, { 0, 0, 1 }, { 0, 1, 1 } };
+                    }
+                    break;
+                case 6:
+                    // ###
+                    //  #
+                    switch (direction)
+                    {
+                        case 0:
+                            return new int[3, 3] { { 0, 0, 0 }, { 1, 1, 1 }, { 0, 1, 0 } };
+                        case 1:
+                            return new int[3, 3] { { 0, 1, 0 }, { 0, 1, 1 }, { 0, 1, 0 } };
+                        case 2:
+                            return new int[3, 3] { { 0, 1, 0 }, { 1, 1, 1 }, { 0, 0, 0 } };
+                        case 3:
+                            return new int[3, 3] { { 0, 1, 0 }, { 1, 1, 0 }, { 0, 1, 0 } };
+                    }
+                    break;
+            }
 
+            return null;
+        }
 
 
 

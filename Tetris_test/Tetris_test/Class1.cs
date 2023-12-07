@@ -341,7 +341,27 @@ namespace Tetris_test
                 }
             }
         }
+        public void MoveLeft()
+        {
+            RemoveCurrentBlock();
 
+            if (CanAction(CurrentDirection, CurrentX - 1, CurrentY))
+            {
+                CurrentX--;
+                MergeCurrentBlockToBoard();
+            }
+        }
+
+        public void MoveRight()
+        {
+            RemoveCurrentBlock();
+
+            if (CanAction(CurrentDirection, CurrentX + 1, CurrentY))
+            {
+                CurrentX++;
+                MergeCurrentBlockToBoard();
+            }
+        }
 
 
 

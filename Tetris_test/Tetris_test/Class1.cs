@@ -255,7 +255,20 @@ namespace Tetris_test
             return null;
         }
 
-
+        private void FixBlock()
+        {
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    if (Board[i, j] == 2)
+                    {
+                        Board[i, j] = 1;
+                    }
+                }
+            }
+            DestroyBlock();
+        }
 
     }
 }

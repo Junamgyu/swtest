@@ -18,6 +18,47 @@ namespace Tetris_test
         {
             InitializeComponent();
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                await semaphoreSlim.WaitAsync();
+                Tetris.MoveLeft();
+                Tetris.DrawBoard((Form)this);
+                semaphoreSlim.Release();
+            }
+
+            if (e.KeyCode == Keys.Right)
+            {
+                await semaphoreSlim.WaitAsync();
+                Tetris.MoveRight();
+                Tetris.DrawBoard((Form)this);
+                semaphoreSlim.Release();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                await semaphoreSlim.WaitAsync();
+                Tetris.NextDirection();
+                Tetris.DrawBoard((Form)this);
+                semaphoreSlim.Release();
+            }
+
+            if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Down)
+            {
+                await semaphoreSlim.WaitAsync();
+                Tetris.MoveDown();
+                Tetris.DrawBoard((Form)this);
+                semaphoreSlim.Release();
+            }
+
+        }
     }
 }
 

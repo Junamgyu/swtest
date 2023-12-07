@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -394,6 +395,33 @@ namespace Tetris_test
                 }
             }
         }
+        private void PaintCell(Form form, int unitSize, float x1, float y1, int i, int j)
+        {
+            Graphics g;
 
+            try
+            {
+                g = form.CreateGraphics();
+            }
+            catch
+            {
+                return;
+            }
+
+            switch (Board[i, j])
+            {
+                case 1:
+                    g.FillRectangle(Brushes.White, x1, y1, unitSize, unitSize);
+                    g.DrawRectangle(new Pen(Brushes.Black), x1, y1, unitSize, unitSize);
+                    break;
+                case 2:
+                    g.FillRectangle(Brushes.Red, x1, y1, unitSize, unitSize);
+                    g.DrawRectangle(new Pen(Brushes.Black), x1, y1, unitSize, unitSize);
+                    break;
+                default:
+                    g.FillRectangle(Brushes.Black, x1, y1, unitSize, unitSize);
+                    break;
+            }
+        }
     }
 }

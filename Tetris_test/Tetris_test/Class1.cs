@@ -81,9 +81,55 @@ namespace Tetris_test
             MergeCurrentBlockToBoard();
         }
 
-        private bool CanAction(int nextDirection, int currentX, int currentY)
+        private bool CanAction(int nextDirection, int nextX, int nextY)
         {
-            throw new NotImplementedException();
+            int[,] bloackArray = GetBlockArray(CurrentBlock, nextDirection);
+            int arrayLength = bloackArray.Length;
+            int size = 0;
+
+            switch (arrayLength)
+            {
+                case 4:
+                    size = 2;
+                    break;
+                case 9:
+                    size = 3;
+                    break;
+                case 16:
+                    size = 4;
+                    break;
+
+            }
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (bloackArray[i, j] == 1)
+                    {
+                        if (nextY + j >= Height)
+                        {
+                            return false;
+                        }
+
+                        if (nextX + i < 0)
+                        {
+                            return false;
+                        }
+
+                        if (nextX + i >= Width)
+                        {
+                            return false;
+                        }
+
+                        if (Board[nextX + i, nextY + j] != 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         private void RemoveCurrentBlock()
@@ -295,6 +341,7 @@ namespace Tetris_test
                 }
             }
         }
+
 
 
 

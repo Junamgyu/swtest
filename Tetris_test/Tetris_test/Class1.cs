@@ -52,11 +52,29 @@ namespace Tetris_test
             CurrentBlock = (int)random.Next(0, 7);
         }
 
+        public void NextDirection()
+        {
+            int nextDirection = CurrentDirection;
+
+            switch (CurrentDirection)
+            {
+                case 0:
+                    nextDirection = 1;
+                    break;
+                case 1:
+                    nextDirection = 2;
+                    break;
+                case 2:
+                    nextDirection = 3;
+                    break;
+                case 3:
+                    nextDirection = 0;
+                    break;
+            }
 
 
 
 
 
-
-    }
+        }
 }

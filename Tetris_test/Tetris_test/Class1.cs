@@ -36,5 +36,27 @@ namespace Tetris_test
                 }
             }
         }
+        public void NewBlock()
+        {
+            CurrentX = 4;
+            CurrentY = 0;
+
+            SetRandomCurrentBlock();
+            MergeCurrentBlockToBoard();
+
+
+        }
+
+        public void SetRandomCurrentBlock()
+        {
+            CurrentBlock = (int)random.Next(0, 7);
+        }
+
+
+
+
+
+
+
     }
 }

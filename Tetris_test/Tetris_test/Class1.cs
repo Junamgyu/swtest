@@ -269,6 +269,34 @@ namespace Tetris_test
             }
             DestroyBlock();
         }
+        private void DestroyBlock()
+        {
+            for (int j = Height - 1; j >= 0; j--)
+            {
+                bool isEveryCellfilled = true;
+
+                for (int i = 0; i < Width; i++)
+                {
+                    if (Board[i, j] != 1)
+                    {
+                        isEveryCellfilled = false;
+                    }
+                }
+
+                if (isEveryCellfilled)
+                {
+                    for (int k = j; k > 0; k--)
+                    {
+                        for (int i = 0; i < Width; i++)
+                        {
+                            Board[i, k] = Board[i, k - 1];
+                        }
+                    }
+                }
+            }
+        }
+
+
 
     }
 }

@@ -71,7 +71,35 @@ namespace Tetris_test
                     nextDirection = 0;
                     break;
             }
+            RemoveCurrentBlock();
+
+            if (CanAction(nextDirection, CurrentX, CurrentY))
+            {
+                CurrentDirection = nextDirection;
+            }
+
+            MergeCurrentBlockToBoard();
         }
+
+        private bool CanAction(int nextDirection, int currentX, int currentY)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemoveCurrentBlock()
+        {
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    if (Board[i, j] == 2)
+                    {
+                        Board[i, j] = 0;
+                    }
+                }
+            }
+        }
+
 
 
         private void MergeCurrentBlockToBoard()
@@ -106,6 +134,23 @@ namespace Tetris_test
                 }
             }
         }
+        public void MoveDown()
+        {
+            RemoveCurrentBlock();
+
+            if (CanAction(CurrentDirection, CurrentX, CurrentY + 1))
+            {
+                CurrentY++;
+                MergeCurrentBlockToBoard();
+            }
+            else
+            {
+                MergeCurrentBlockToBoard();
+                FixBlock();
+                NewBlock();
+            }
+        }
+
 
 
 

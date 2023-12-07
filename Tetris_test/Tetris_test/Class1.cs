@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Tetris_test
 {
@@ -363,7 +365,63 @@ namespace Tetris_test
             }
         }
 
+        public void DrawBoard(Form form)
+        {
+            int unitSize = 30;
 
+            int marginLeft = 1 * unitSize;
+            int marginTop = -1 * unitSize;
 
+            float width = Width * unitSize;
+            float height = Height * unitSize;
+
+            float x1 = marginLeft;
+            float y1 = marginTop;
+            float x2 = x1 + width;
+            float y2 = y1 + height;
+
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 4; j < Height; j++)
+                {
+                    x1 = marginLeft + (i * unitSize);
+                    y1 = marginTop + (j * unitSize);
+
+                    if (Board[i, j] != OldBoard[i, j])
+                    {
+                        PaintCell(form, unitSize, x1, y1, i, j);
+                    }
+                    OldBoard[i, j] = Board[i, j];
+                }
+            }
+        }
+        private void PaintCell(Form form, int unitSize, float x1, float y1, int i, int j)
+        {
+            Graphics g;
+
+            try
+            {
+                g = form.CreateGraphics();
+            }
+            catch
+            {
+                return;
+            }
+
+            switch (Board[i, j])
+            {
+                case 1:
+                    g.FillRectangle(Brushes.White, x1, y1, unitSize, unitSize);
+                    g.DrawRectangle(new Pen(Brushes.Black), x1, y1, unitSize, unitSize);
+                    break;
+                case 2:
+                    g.FillRectangle(Brushes.Red, x1, y1, unitSize, unitSize);
+                    g.DrawRectangle(new Pen(Brushes.Black), x1, y1, unitSize, unitSize);
+                    break;
+                default:
+                    g.FillRectangle(Brushes.Black, x1, y1, unitSize, unitSize);
+                    break;
+            }
+        }
     }
 }

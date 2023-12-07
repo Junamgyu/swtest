@@ -14,6 +14,18 @@ namespace Tetris_test
 {
     public partial class Form1 : Form
     {
+        public Tetris Tetris = new Tetris();
+
+        SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+
+        private Boolean m_blLoginCheck = false;
+
+        public Boolean LoginCheck
+        {
+            get { return m_blLoginCheck; }
+            set { m_blLoginCheck = value; }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -57,7 +69,13 @@ namespace Tetris_test
                 Tetris.DrawBoard((Form)this);
                 semaphoreSlim.Release();
             }
-
+        }
+        private async void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Tetris.NewBlock();
+            await MoveBlockDownLooplyAsync();
+            Tetris.DrawBoard((Form)this);
+            MessageBox.Show("Game Over.");
         }
     }
 }

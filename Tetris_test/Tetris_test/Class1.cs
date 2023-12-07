@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Tetris_test
 {
@@ -363,7 +364,36 @@ namespace Tetris_test
             }
         }
 
+        public void DrawBoard(Form form)
+        {
+            int unitSize = 30;
 
+            int marginLeft = 1 * unitSize;
+            int marginTop = -1 * unitSize;
+
+            float width = Width * unitSize;
+            float height = Height * unitSize;
+
+            float x1 = marginLeft;
+            float y1 = marginTop;
+            float x2 = x1 + width;
+            float y2 = y1 + height;
+
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 4; j < Height; j++)
+                {
+                    x1 = marginLeft + (i * unitSize);
+                    y1 = marginTop + (j * unitSize);
+
+                    if (Board[i, j] != OldBoard[i, j])
+                    {
+                        PaintCell(form, unitSize, x1, y1, i, j);
+                    }
+                    OldBoard[i, j] = Board[i, j];
+                }
+            }
+        }
 
     }
 }
